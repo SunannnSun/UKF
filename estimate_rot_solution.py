@@ -17,10 +17,8 @@ def estimate_rot(data_num=1):
     vicon = io.loadmat('vicon/viconRot'+str(data_num)+'.mat')
     accel = imu['vals'][0:3,:]
     gyro = imu['vals'][3:6,:]
-    # length = min(np.shape(imu['ts'])[1], np.shape(vicon['ts'])[1])
-    length = 5000
-    # length = 2000
-
+    length = min(np.shape(imu['ts'])[1], np.shape(vicon['ts'])[1])
+  
     ukf = UKF()
 
     vicon_accel = np.zeros((3, length))
@@ -79,4 +77,4 @@ def estimate_rot(data_num=1):
 
 
 if __name__ == "__main__":
-    estimate_rot(1)
+    estimate_rot(3)

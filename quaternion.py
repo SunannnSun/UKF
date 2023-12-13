@@ -24,6 +24,17 @@ class Quaternion:
         return vec*theta
 
     def euler_angles(self):
+        """
+        https://dominicplein.medium.com/extrinsic-intrinsic-rotation-do-i-multiply-from-right-or-left-357c38c1abfd
+        https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles#cite_note-3
+
+        phi: roll
+        theta: pitch
+        psi: yaw
+
+        can be interpreted as either intrinsic "xyz" or extrinsic "ZYX" 
+        """
+        
         phi = math.atan2(2*(self.q[0]*self.q[1]+self.q[2]*self.q[3]), \
                 1 - 2*(self.q[1]**2 + self.q[2]**2))
         theta = math.asin(2*(self.q[0]*self.q[2] - self.q[3]*self.q[1]))
